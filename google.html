@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+            font-size: 80%;
+            padding: 0;
+            margin: 0;
+            background: #aae5a4;
+        }
+        div#static-index {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        div, p, body {
+            font-family: verdana,sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            margin-bottom: 1em;
+        }
+        img {
+            border: none;
+            vertical-align: middle;
+        }
+        div#static-index > div#links > a {
+            margin: 0 .5em;
+        }
+        .awsearch {
+            position: relative;
+            width: 100%;
+        }
+        input {
+            padding: 0 .3em;
+        }
+        a:link {
+            color: #009;
+            text-decoration: none;
+        }
+    </style>
+    <head>
+        <title>Google</title>
+        <link rel="icon" type="image/x-icon" href="./public/favicon.ico">
+    </head>
+    <body>
+        <div id="static-index">
+            <p class="index-header">
+                <a href="">
+                    <img src="./public/logo.png" alt="" style="width: 100%; max-width: 700px;">
+                </a>
+            </p>
+            <p>Rule#38: A cat is fine too.</p>
+            <div id="links" class="space">
+                <a href="" title="Daymap">Daymap</a>
+                <a href="" title="Outlook">Outlook</a>
+                <a href="" title="OneDrive">OneDrive</a>
+                <a href="https://discord.com/" title="Discord">Discord</a>
+            </div>
+            <div class="space">
+                <form action="https://www.google.com/search" method="get" target="_blank">
+                    <div class="awsearch">
+                        <input id="search" size="30" type="text" value="" name="q" autocomplete="off" aria-autocomplete="list" autofocus>
+                    </div>
+                    <input name="searchDefault" type="submit" value="Search">
+                </form>
+            </div>
+            <div style="font-size: 80%; margin-bottom: 2em;">
+                <p>9 million posts idk bottom text</p>
+                <p> </p>
+                <p id="time">
+                    <!-- images go here -->
+                </p>
+            </div>
+        </div>
+    </body>
+    <script>
+        function date() {
+            document.getElementById("time").replaceChildren();
+            var today = new Date();
+            var hours = today.getHours().toString();
+            if(hours.length == 1)
+                numberImg(0, hours[0])
+            else
+                numberImg(hours[0], hours[1])
+            space();
+            var minutes = today.getMinutes().toString();
+            if(minutes.length == 1)
+                numberImg(0, minutes[0])
+            else
+                numberImg(minutes[0], minutes[1])
+            space();
+            var seconds = today.getSeconds().toString();
+            if(seconds.length == 1)
+                numberImg(0, seconds[0])
+            else
+                numberImg(seconds[0], seconds[1])
+        }
+
+        function numberImg(index1, index2) {
+            i = document.createElement("IMG");
+            i.setAttribute("id", "h");
+            i.setAttribute("src", "./public/counter/" + index1 + ".gif"); 
+            document.getElementById("time").appendChild(i);
+
+            i2 = document.createElement("IMG");
+            i2.setAttribute("id", "h");
+            i2.setAttribute("src", "./public/counter/" + index2 + ".gif"); 
+            document.getElementById("time").appendChild(i2);
+        }
+
+        function space() {
+            var padLeft = document.createElement("span")
+            padLeft.style.marginRight = "30px"
+            document.getElementById("time").appendChild(padLeft);
+        }
+        setInterval(date, 1000)
+        date()
+    </script>
+</html>
